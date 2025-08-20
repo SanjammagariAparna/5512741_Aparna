@@ -1,0 +1,51 @@
+#include <stdio.h>
+#include <stdlib.h>
+int month[] = {0,31,28,31,30,31,30,31,31,30,31,30,31};
+
+int isLeap(int y) {
+    if (y % 400 == 0) return 1;
+    if (y % 100 == 0) return 0;
+    if (y % 4 == 0) return 1;
+    return 0;
+}
+
+long long concat(int d, int m, int y) {
+    char buf[20];
+    sprintf(buf, "%d%d%d", d, m, y); // concatenate without leading zeros
+    return atoll(buf);
+}
+
+int main() {
+    int d1, m1, y1, d2, m2, y2;
+    scanf("%d-%d-%d", &d1, &m1, &y1);
+    scanf("%d-%d-%d", &d2, &m2, &y2);
+
+    int ans = 0;
+
+    while (1) {
+        long long num = concat(d1, m1, y1);
+        if (num % d1 == 0 || num % m1 == 0) ans++;
+
+        // break condition
+        if (d1 == d2 && m1 == m2 && y1 == y2) break;
+
+        // increment date
+        d1++;
+        int days = month[m1];
+        if (m1 == 2 && isLeap(y1)) days = 29;
+
+        if (d1 > days) {
+            d1 = 1;
+            m1++;
+            if (m1 > 12) {
+                m1 = 1;
+                y1++;
+            }
+        }
+    }
+
+    printf("%d\n", ans);
+    return 0;
+
+    
+}

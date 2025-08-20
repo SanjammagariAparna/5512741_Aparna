@@ -1,0 +1,12 @@
+def decodeHuff(root, s):
+    current = root
+    for bit in s:
+        if bit == '0':
+            current = current.left
+        else:  # bit == '1'
+            current = current.right
+
+        # If it's a leaf node
+        if current.left is None and current.right is None:
+            print(current.data, end='')  # Output character
+            current = root  # Reset to start for next character

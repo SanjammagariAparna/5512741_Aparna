@@ -1,0 +1,42 @@
+1 . FIND THE MEDIAN..
+
+
+#include <stdlib.h>
+
+int cmpfunc(const void *a, const void *b) {
+    return (*(int*)a - *(int*)b);
+}
+
+int findMedian(int arr_count, int* arr) {
+   
+    qsort(arr, arr_count, sizeof(int), cmpfunc);
+
+
+    return arr[arr_count / 2];
+}
+
+2. FLIPPING THE MATRIX .
+
+int flippingMatrix(int matrix_rows, int matrix_columns, int** matrix) {
+    int n = matrix_rows / 2;  
+    int sum = 0;
+
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            int a = matrix[i][j];
+            int b = matrix[i][matrix_columns - 1 - j];
+            int c = matrix[matrix_rows - 1 - i][j];
+            int d = matrix[matrix_rows - 1 - i][matrix_columns - 1 - j];
+
+            
+            int max_val = a;
+            if (b > max_val) max_val = b;
+            if (c > max_val) max_val = c;
+            if (d > max_val) max_val = d;
+
+            sum += max_val;
+        }
+    }
+
+    return sum;
+}

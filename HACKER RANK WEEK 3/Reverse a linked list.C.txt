@@ -1,0 +1,14 @@
+SinglyLinkedListNode* reverse(SinglyLinkedListNode* llist) {
+    SinglyLinkedListNode* prev = NULL;
+    SinglyLinkedListNode* current = llist;
+    SinglyLinkedListNode* next = NULL;
+
+    while (current != NULL) {
+        next = current->next;   
+        current->next = prev;   // reverse current node's pointer
+        prev = current;         // move prev to current
+        current = next;         // move current to next
+    }
+
+    return prev; // new head of the reversed list
+}

@@ -1,0 +1,27 @@
+import sys
+import heapq
+
+def qheap1(queries):
+    heap = []
+    active = set()   # track elements still in heap
+    
+    for query in queries:
+        parts = query.split()
+        
+        if parts[0] == "1":
+            # Insert
+            val = int(parts[1])
+            heapq.heappush(heap, val)
+            active.add(val)
+        
+        elif parts[0] == "2":
+            # Delete
+            val = int(parts[1])
+            if val in active:
+                active.remove(val)
+        
+        else:  # "3"
+            # Print minimum
+            while heap[0] not in active:
+                heapq.heappop(heap)   # remove stale entries
+            print(heap[0])

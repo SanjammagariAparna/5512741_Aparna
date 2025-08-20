@@ -1,0 +1,16 @@
+import heapq
+
+def cookies(k, A):
+    heapq.heapify(A)  # turn list into min-heap
+    operations = 0
+    
+    while A and A[0] < k:
+        if len(A) < 2:
+            return -1
+        least = heapq.heappop(A)
+        second = heapq.heappop(A)
+        new_cookie = least + 2 * second
+        heapq.heappush(A, new_cookie)
+        operations += 1
+    
+    return operations

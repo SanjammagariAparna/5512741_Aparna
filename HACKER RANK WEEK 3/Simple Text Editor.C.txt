@@ -1,0 +1,56 @@
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define MAX_LEN 100000
+
+typedef struct {
+    char **data;
+    int top;
+} Stack;
+
+// Initialize the stack
+Stack* createStack(int capacity) {
+    Stack *stack = (Stack*) malloc(sizeof(Stack));
+    stack->data = (char**) malloc(capacity * sizeof(char*));
+    stack->top = -1;
+    return stack;
+}
+
+// Push a copy of string onto stack
+void push(Stack *stack, const char *str) {
+    stack->top++;
+    stack->data[stack->top] = strdup(str); // allocate memory for copy
+}
+
+// Pop from stack and return string
+char* pop(Stack *stack) {
+    if (stack->top < 0) return NULL;
+    char *res = stack->data[stack->top];
+    stack->top--;
+    return res;
+}
+
+// Free stack memory
+void freeStack(Stack *stack) {
+    while (stack->top >= 0) {
+        free(stack->data[stack->top]);
+        stack->top--;
+    }
+    free(stack->data);
+    free(stack);
+}
+
+int main() {
+    int Q;
+    scanf("%d", &Q);
+
+    char current[MAX_LEN + 1] = ""; // current text
+    Stack *undoStack = createStack(Q); // stack to store previous states
+
+    for (int i = 0; i < Q; i++) {
+        int op;
+        scanf

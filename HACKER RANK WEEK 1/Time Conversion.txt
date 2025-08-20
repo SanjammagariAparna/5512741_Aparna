@@ -1,0 +1,15 @@
+char* readline();
+char* timeConversion(char* s) {
+    static char result[9]; // HH:MM:SS\0
+    int hour = (s[0] - '0') * 10 + (s[1] - '0'); // extract hour
+
+    if (s[8] == 'A') { // AM case
+        if (hour == 12) hour = 0; // midnight case
+    } else { // PM case
+        if (hour != 12) hour += 12; // afternoon case
+    }
+
+    sprintf(result, "%02d:%c%c:%c%c", hour, s[3], s[4], s[6], s[7]);
+    return result;
+}
+

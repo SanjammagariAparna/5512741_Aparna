@@ -1,0 +1,23 @@
+int cmpfunc(const void *a, const void *b) {
+    return (*(char *)a - *(char *)b);
+}
+
+char* gridChallenge(int grid_count, char** grid) {
+    // Step 1: Sort each row
+    for (int i = 0; i < grid_count; i++) {
+        qsort(grid[i], strlen(grid[i]), sizeof(char), cmpfunc);
+    }
+
+    // Step 2: Check columns
+    for (int col = 0; col < strlen(grid[0]); col++) {
+        for (int row = 0; row < grid_count - 1; row++) {
+            if (grid[row][col] > grid[row + 1][col]) {
+                static char no[] = "NO";
+                return no;
+            }
+        }
+    }
+
+    static char yes[] = "YES";
+    return yes;
+}

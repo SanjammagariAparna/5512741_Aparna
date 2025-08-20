@@ -1,0 +1,22 @@
+char* isBalanced(char* s) {
+
+}
+
+int main()
+{
+    FILE* fptr = fopen(getenv("OUTPUT_PATH"), "w");
+
+    int t = parse_int(ltrim(rtrim(readline())));
+
+    for (int t_itr = 0; t_itr < t; t_itr++) {
+        char* s = readline();
+
+        char* result = isBalanced(s);
+
+        fprintf(fptr, "%s\n", result);
+    }
+
+    fclose(fptr);
+
+    return 0;
+}

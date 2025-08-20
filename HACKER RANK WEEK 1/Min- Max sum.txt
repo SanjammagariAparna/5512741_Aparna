@@ -1,0 +1,22 @@
+
+#include<stdio.h>
+
+void miniMaxSum(int arr_count, int* arr) {
+    long total = 0;
+    int min =arr[0];
+    int max =arr[0];
+    for (int i=0;i<arr_count; i++){
+        total +=arr[i];
+        if (arr[i]< min){
+            min = arr[i];
+        }
+        if (arr[i]> max){
+            max = arr[i];
+        }
+    }
+    long min_sum = total -max;
+    long max_sum = total -min;
+    
+    printf("%Ld %Ld\n ", min_sum, max_sum);
+
+}

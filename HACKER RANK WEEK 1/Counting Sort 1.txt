@@ -1,0 +1,16 @@
+int parse_int(char*);
+
+
+    int* countingSort(int arr_count, int* arr, int* result_count) {
+    *result_count = 100; 
+    int* result = calloc(*result_count, sizeof(int)); 
+
+    for (int i = 0; i < arr_count; i++) {
+        result[arr[i]]++; 
+    }
+
+    return result;
+
+
+
+}

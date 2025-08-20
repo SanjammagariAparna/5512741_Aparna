@@ -1,0 +1,22 @@
+char* counterGame(long n) {
+    static char louise[] = "Louise";
+    static char richard[] = "Richard";
+    int moves = 0;
+
+    while (n > 1) {
+        if ((n & (n - 1)) == 0) {
+            // n is power of 2
+            n >>= 1;
+        } else {
+            // subtract largest power of 2 less than n
+            long p = 1L << ((int)log2(n));
+            n -= p;
+        }
+        moves++;
+    }
+
+    if (moves % 2 == 1)
+        return louise;
+    else
+        return richard;
+}

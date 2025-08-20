@@ -1,0 +1,16 @@
+def maxSubarray(arr):
+    # ----- Contiguous (Kadane's Algorithm) -----
+    max_ending_here = arr[0]
+    max_so_far = arr[0]
+    for x in arr[1:]:
+        max_ending_here = max(x, max_ending_here + x)
+        max_so_far = max(max_so_far, max_ending_here)
+
+    # ----- Non-contiguous -----
+    if all(x < 0 for x in arr):
+        max_non_contig = max(arr)   # all negative, take largest
+    else:
+        max_non_contig = sum(x for x in arr if x > 0)
+
+    return [max_so_far, max_non_contig]
+
